@@ -5,10 +5,12 @@ from pathlib import Path
 from skill_bundle import ROOT
 
 STAGES = {
-    "direction": ["direction-design.md"],
+    "direction": ["direction-design.md", "stage-deliverables.md"],
+    "design": ["direction-design.md", "stage-deliverables.md", "state-evidence.md"],
     "implementation": ["implementation-verification.md", "state-evidence.md"],
-    "materials": ["materials-integration.md", "reference-format.md", "format-profile.json", "platform-compatibility.md"],
-    "audit": ["audit-revision.md", "reference-format.md", "format-profile.json", "source-evidence.md"],
+    "materials": ["materials-integration.md", "registration-fields.md", "screenshots.md", "materials-toolkit.md", "reference-format.md", "format-profile.json"],
+    "audit": ["audit-revision.md", "registration-rules.md", "reference-format.md", "format-profile.json", "source-evidence.md", "materials-toolkit.md"],
+    "revision": ["revision-polishing.md", "audit-revision.md", "reference-format.md", "format-profile.json", "materials-toolkit.md"],
 }
 
 def context(stage, root=ROOT):

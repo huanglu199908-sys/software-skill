@@ -38,6 +38,6 @@ Web端和客户端个人技能库可能独立；本机文件安装不等于云�
 
 ## 能验证什么
 
-进入材料阶段可先运行`python scripts/check_environment.py --project <项目目录>`；它会只读查找当前项目和用户级常见技能根中的`software-copyright-materials`及PATH中的OfficeCLI。依赖在自定义位置时加`--materials-dir`。即使依赖未进入宿主技能列表，也可根据返回路径读取真实SKILL.md及引用，按其确认和后端要求执行；不得把“找到了文件”称为已获得工具权限或正式Word生成成功。
+进入材料阶段可运行`python scripts/check_environment.py --project <项目目录>`，只读报告当前解释器的文档库、Word注册和LibreOffice路径，不搜索其他skill。Word生成、源码核验及PDF预览使用本技能脚本；见[工具指南](materials-toolkit.md)。发现引擎不表示它已经成功运行，真实权限与最终分页仍须实际核查。
 
 本地测试覆盖清单名称、资源引用、两种ZIP布局、WorkBuddy必需字段、安装路径、已有目录保护、备份更新、提示词引用展开与源码证据工具。它们证明包和适配器可被相应格式加载，不证明远程模型质量、客户端所有版本或用户权限设置。真实平台会话未运行时应标为“加载格式已验证，端到端待该宿主确认”。

@@ -21,7 +21,7 @@ python scripts/source_evidence.py check --manifest snapshot.json --report drift-
 
 ## 2. 从最终文档独立回读并映射
 
-用 OfficeCLI 读取最终 DOCX 内容，按实际导出顺序和生成时保存的行映射，建立下列 JSON。不能把快照中的原文复制过去再称已经检查了 Word。
+对于本技能生成的材料，直接用`materials.py audit`回读最终DOCX并核对行映射。自定义后端可以用DOCX解析器读取真实正文，按实际导出顺序和保存的映射建立下列JSON。不能把快照原文复制过去冒充Word回读。
 
 ```json
 {
@@ -50,6 +50,6 @@ python scripts/source_evidence.py compare --manifest snapshot.json --rendered ac
 
 ## 3. 脚本不能证明什么
 
-它不能证明导出 JSON 确实来自 DOCX、不能识别代码业务语义、不能验证用户确认、图文排版或法律要求。调用者须保留真实 OfficeCLI 回读命令和原始输出，以支撑映射来源；正文检查后仍须检查实际页数、有效行数与全页预览。
+此底层比较器不能证明外部JSON来自DOCX、不能识别业务语义或确认法律要求。`materials.py audit`直接解析实际DOCX并绑定哈希，可减少伪导出风险；仍须保留调用与实际产物，核查有效行数、真实分页及全部预览。
 
 源码变了时冻结新修订并复验受影响的软件/材料，不直接改旧快照哈希掩盖漂移。项目移位但内容相同时可对 check/compare 提供新的 `--project`。

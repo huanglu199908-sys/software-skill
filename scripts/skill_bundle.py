@@ -4,8 +4,8 @@ import re
 
 NAME = "software-skill"
 ROOT = Path(__file__).resolve().parent.parent
-TOP_FILES = {"SKILL.md", "README.md", "NOTICE.md"}
-TOP_DIRS = {"agents", "references", "scripts", "tests"}
+TOP_FILES = {"SKILL.md", "README.md", "NOTICE.md", "requirements.txt"}
+TOP_DIRS = {"agents", "references", "scripts", "tests", "assets"}
 
 def bundle_files(root=ROOT):
     root = Path(root).resolve()

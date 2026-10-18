@@ -53,6 +53,9 @@ class PortabilityTests(unittest.TestCase):
                 with zipfile.ZipFile(Path(tmp) / item["file"]) as z:
                     self.assertTrue(all(n.startswith("software-skill/") and ".." not in n.split("/") for n in z.namelist()))
                     self.assertIn("software-skill/SKILL.md", z.namelist())
+                    self.assertIn("software-skill/scripts/materials.py", z.namelist())
+                    self.assertIn("software-skill/assets/material-input.example.json", z.namelist())
+                    self.assertIn("software-skill/requirements.txt", z.namelist())
                     self.assertFalse(any(".git/" in n or "__pycache__" in n or n.endswith(".env") for n in z.namelist()))
                     manifest = z.read("software-skill/SKILL.md").decode("utf-8")
                     self.assertEqual("description_zh:" in manifest, item["platform"] == "workbuddy")

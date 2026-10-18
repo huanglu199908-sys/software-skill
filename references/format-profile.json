@@ -2,7 +2,7 @@
   "profile_id": "ledger-reference-v1",
   "updated": "2026-10-18",
   "source": "用户指定的增量式办公台账软件两份最终修订DOCX；仅记录样式，不携带其业务和主体事实",
-  "priority": "当前用户明确格式要求 > 新提供的参考文件 > 此默认样式 > 上游生成器默认外观",
+  "priority": "当前用户明确格式要求 > 新提供的参考文件 > 此默认样式 > 生成器缺省外观",
   "common": {
     "paper": "A4 portrait",
     "text_color": "000000",

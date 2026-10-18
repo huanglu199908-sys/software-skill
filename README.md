@@ -2,7 +2,9 @@
 
 从有实际意义的软件方向出发，完成算法设计、软件实现与验证，再生成和审查中文软件著作权申请材料。
 
-由原 `software-copyright-workflow` 更名，当前版本 **1.2.0**。保留已确定的台账参考样式：手册独立封面、实测页码目录、总体流程与模块图、真实页面说明，默认无附录；代码采用9磅字体、页内1—50编号。参数见 [format-profile.json](references/format-profile.json)。这是可调整的交付样式，不是登记机构唯一格式。
+当前版本 **2.0.0**，是独立技能：从0了解需求 → 选题 → 方案设计 → 实现与验证 → 软著撰写 → 审核 → 修改润色。规则、写作指南、源码提取、Word/TXT生成和审查脚本均在本仓库内，不再要求安装或调用其他skill。
+
+保留台账参考样式：独立封面、实际页码目录、流程与模块图、真实页面说明、默认无附录；代码9磅、页内1—50编号。参数见 [format-profile.json](references/format-profile.json)。这是用户交付偏好，不是法定唯一模板。阶段完成条件见[阶段交付](references/stage-deliverables.md)。
 
 ## 调用与兼容
 
@@ -25,7 +27,7 @@ python scripts/install.py --platform deepseek --scope user
 python scripts/install.py --platform workbuddy --scope project --project "你的软件项目目录"
 ```
 
-默认分别安装到`~/.agents/skills/software-skill`、`~/.dsh/skills/software-skill`、`<项目>/.codebuddy/skills/software-skill`。Codex已有其他实际生效的技能根目录时，用`--skills-dir`明确指定；避免同名技能装在多个发现目录。脚本遇到已有同名目录会停止；`--replace`会先备份精确目标再替换，`--dry-run`仅显示操作计划。它不修改其他客户端配置、不安装上游或运行时、不读取API密钥。
+默认分别安装到`~/.agents/skills/software-skill`、`~/.dsh/skills/software-skill`、`<项目>/.codebuddy/skills/software-skill`。Codex实际使用其他技能根时用`--skills-dir`明确指定，避免重复同名安装。已有目录须加`--replace`，脚本先精确备份再替换；`--dry-run`无写入。不修改客户端配置、安装运行时或读取API密钥。
 
 WorkBuddy也可在技能页面选择“添加技能→上传技能”，导入下面构建出的`software-skill-workbuddy.zip`。这只是安装本地技能包，不是将技能提交到公共市场。
 
@@ -39,11 +41,20 @@ python scripts/export_prompt.py --stage implementation --task "按已确认设�
 
 第一种可粘贴到聊天窗口；后两种由你的API客户端读取。API模型ID由调用者明确提供，脚本不猜测最新模型，不发送网络请求、不收费、不执行生成的命令。导出只包含技能及当前阶段引用，不自动附加软件源码、业务表或身份材料。
 
-## 材料阶段依赖
+## 独立生成材料
 
-正式Word/TXT生成使用 [Fokkyp/SoftwareCopyright-Skill](https://github.com/Fokkyp/SoftwareCopyright-Skill) 提供的`software-copyright-materials`，以及该技能要求的OfficeCLI版本。本文不捆绑或修改其代码。缺少依赖时仍可推进方向、设计、开发与Markdown草稿；正式Word阶段如实报告能力缺口，按用户授权安装后继续。
+本技能自带`materials.py`生成申请信息TXT、源码TXT/DOCX、手册Markdown/DOCX、行映射和哈希，并从实际Word回读核验。示例输入在`assets/material-input.example.json`；具体字段、图片与运行方法见[独立工具指南](references/materials-toolkit.md)。示例不是已实现软件，不能原样作为正式材料。
 
-运行`python scripts/check_environment.py`可只读定位已安装的材料技能和OfficeCLI；这也允许其他宿主使用本机已有依赖，而不把依赖路径写死为Codex目录。版本是否符合、是否有执行权限，仍按实际技能与宿主核查。
+```text
+python scripts/check_environment.py
+python scripts/init_project.py --parent <父目录> --name <新项目目录名>
+python scripts/materials.py build --input <实际材料JSON> --out <新输出目录>
+python scripts/materials.py audit --bundle <输出目录>
+```
+
+Word写入使用普通库python-docx，PDF工具使用pypdf、pypdfium2和Pillow，依赖在`requirements.txt`。安装需遵守实际环境权限，建议虚拟环境。无需OfficeCLI，不扫描其他skill。Windows自带`render_word.ps1`用已安装Word在副本刷新目录、实测分页并导出PDF；其他系统可用已安装LibreOffice。`pdf_evidence.py`渲染全部页，`export_deposit.py`从完整实测PDF连续取前后页。
+
+源码文字与图片静态校验不替代真实分页、业务真实性和当前受理规则核查。默认保留待补录、缺图源和未验证项，不凭估算写实际页数。操作手册正文由代理基于真实项目撰写，工具只负责编排、生成和可自动检查部分，不把一键模板当完整成品。
 
 跨平台重新核对设备、软件环境、主体、日期和工具版本；不将历史电脑配置或旧项目权属套用到新软件。材料内部检查通过不等于登记批准。
 
@@ -57,4 +68,4 @@ python scripts/build_packages.py --out dist
 
 构建产生标准技能ZIP、WorkBuddy元数据适配ZIP及SHA256清单；归档只含技能资源，不含本机项目源码、登记证件或日志。标准ZIP与WorkBuddy ZIP都以一个`software-skill/`目录为顶层。请上传对应技能ZIP，而不是直接把GitHub整库源码ZIP当成WorkBuddy安装包。
 
-入口：[SKILL.md](SKILL.md)。技能中的引用采用相对路径，Python辅助脚本仅依赖标准库。仓库维护与本地验证范围见[测试说明](tests/README.md)。
+入口：[SKILL.md](SKILL.md)。引用采用相对路径；安装、快照和阶段导出仅需标准库，文档工具依赖见上述说明。验证覆盖范围见[测试说明](tests/README.md)。历史来源与第三方工具许可边界见[NOTICE.md](NOTICE.md)。

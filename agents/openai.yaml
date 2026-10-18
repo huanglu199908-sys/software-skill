@@ -1,4 +1,4 @@
 interface:
   display_name: "软著全流程：选题、开发与材料审查"
-  short_description: "从真实需求与算法方案出发，完成软件实现、验证、软著材料撰写及审查修订"
-  default_prompt: "使用 $software-skill，从实际需求出发完成设计、实现与验证，按默认台账参考样式或我指定的新模板编制代码和手册，再核对源码、实际分页与材料一致性。"
+  short_description: "独立完成选题、方案设计、开发验证、软著材料撰写、审核与修改润色"
+  default_prompt: "使用 $software-skill 的自带流程和工具，从实际需求开始选题、设计、实现与验证，编写软著材料并审核修改，不转交其他skill；沿用我的格式并核对真实源码与分页。"

@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "date": "2026-10-18",
+  "automated_tests": {"materials": 13, "portability": 8, "source_evidence": 11, "total": 32, "result": "passed"},
+  "skill_manifest_validation": "passed",
+  "standalone_tool_smoke": {
+    "input": "isolated synthetic regression fixture; no real registration data",
+    "other_skill_lookup": "not required by implementation; fixture also generated with user-home lookup disabled",
+    "docx_and_txt_generated": true,
+    "word_engine_version": "12.0",
+    "actual_code_pdf_pages": 3,
+    "actual_manual_pdf_pages": 3,
+    "all_final_pages_rendered_and_visually_reviewed": 6,
+    "refreshed_docx_source_roundtrip": "passed, 109 physical source lines",
+    "corrected_during_visual_review": ["cover fixed-line overlap", "inline-picture fixed-line clipping", "inherited header tab stop", "heading theme color"],
+    "fixture_not_submission_ready": ["intentional pending identity fields", "blank source rows require effective-line review", "pictures are test fixtures, not real software screenshots"]
+  },
+  "not_verified": ["full remote DeepSeek and WorkBuddy sessions", "all platform versions", "LibreOffice rendering", "future projects' business facts or registration acceptance"],
+  "limits": "Tool tests and fixture layout are evidence for this release only, not approval or completeness of future applications."
+}

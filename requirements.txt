@@ -1,0 +1,6 @@
+# Local document writing; no other skill is required.
+python-docx>=1.2.0,<2
+# PDF extraction, continuous-page export and whole-document previews.
+pypdf>=5,<7
+pypdfium2>=4,<6
+Pillow>=10,<13

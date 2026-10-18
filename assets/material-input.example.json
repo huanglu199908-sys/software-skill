@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "example_only": "结构示例，不是实际项目事实；替换为真实已确认信息和已验收页面后再使用",
+  "application": {
+    "name": "示例业务处理软件",
+    "version": "V1.0",
+    "abbreviation": "",
+    "category": "应用软件",
+    "owners": [{"name": "本项目实际著作权人", "type": null, "country": null, "province": null, "city": null, "id_type": null, "id_number": null}],
+    "developers": [],
+    "completion_date": null,
+    "development_mode": null,
+    "publication_status": null,
+    "origin": null,
+    "acquisition": null,
+    "rights_scope": null,
+    "development_environment": null,
+    "runtime_environment": null,
+    "source_total_lines": null,
+    "purpose": null,
+    "field": null,
+    "functions": null,
+    "technical_features": null
+  },
+  "source_snapshot": "证据/源码快照.json",
+  "manual": {
+    "chapters": [
+      {"title": "一、软件概述", "blocks": [{"type": "paragraph", "text": "填写真实使用者、业务问题、输入与输出。示例文字不可直接作为正式交付。"}]},
+      {"title": "二、系统要求", "blocks": [{"type": "table", "headers": ["项目", "实际或目标条件"], "rows": [["运行环境", "待根据实际软件填写"]]}]},
+      {"title": "三、业务流程与模块组成", "blocks": [{"type": "diagram", "path": "图片/业务流程.png", "caption": "当前软件实际业务流程（解释图）", "evidence": "当前项目设计与实现文件"}]},
+      {"title": "四、实际业务操作", "blocks": [
+        {"type": "paragraph", "text": "按实际事务连续说明入口、准备、输入、结果和异常处理；补齐真实章节。"},
+        {"type": "screenshot", "path": "图片/实际页面.png", "caption": "实际运行页面及其可观察状态", "evidence": "截图清单中的版本、数据、操作及运行证据"}
+      ]}
+    ]
+  }
+}
